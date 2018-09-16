@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<h3>Kwikacz uzytkownika {username}</h3>
+<p>Kwiknij wiadomość prywatną</p>
+<table>
+    <thead>
+    <th>Autor</th>
+    <th>Tresc</th>
+    <th>Data</th>
+    </thead>
+    <tbody>
+        {%for kwik in kwiks%}
+        <tr>
+            <td>{{kwik.user}}</td>
+            <td>{{kwik.content}}</td>
+            <td>{{kwik.create_time}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{%endblock%}

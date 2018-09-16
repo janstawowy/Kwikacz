@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<table>
+    <thead>
+    <th>Autor</th>
+    <th>Tresc</th>
+    <th>Data</th>
+    </thead>
+    <tbody>
+        {%for kwik in kwiks%}
+        <tr>
+            <td><a href="{{kwik.user}}">{{kwik.user}}</a></td>
+            <td>{{kwik.content}}</td>
+            <td>{{kwik.create_time}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{%endblock%}

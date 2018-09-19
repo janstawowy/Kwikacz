@@ -24,5 +24,8 @@ urlpatterns = [
     path('kwiknij', views.AddKwikView.as_view()),
     path('login', views.LoginView.as_view()),
     path('register', views.AddUserView.as_view()),
-    re_path(r'user/(?P<username>(\d)+)', views.UserView.as_view()),
+    re_path(r'user/(?P<username>[\w.@+-]+)/$', views.UserView.as_view()),
+    path('messages', views.MessageView.as_view()),
+    path('logout', views.LogoutView.as_view()),
+    re_path('sendmessage/(?P<username>[\w.@+-]+)/$', views.SendMessageView.as_view()),
 ]

@@ -1,8 +1,8 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<h3>Kwikacz uzytkownika {username}</h3>
-<p>Kwiknij wiadomość prywatną</p>
+<h3>Kwikacz uzytkownika {{username}}</h3>
+<p><a href="/sendmessage/{{username}}">Kwiknij wiadomość prywatną</a></p>
 <table>
     <thead>
     <th>Autor</th>

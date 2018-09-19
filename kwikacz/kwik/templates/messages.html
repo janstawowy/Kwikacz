@@ -5,14 +5,14 @@
     <thead>
     <th>Autor</th>
     <th>Tresc</th>
-    <th>Data</th>
+    
     </thead>
     <tbody>
-        {%for kwik in kwiks%}
+        {%for message in messages%}
         <tr>
-            <td><a href="user/{{kwik.user}}">{{kwik.user}}</a></td>
-            <td>{{kwik.content}}</td>
-            <td>{{kwik.create_time}}</td>
+            <td><a href="user/{{message.fromwho}}">{{message.fromwho}}</a></td>
+            <td>{{message.content}}</td>
+            
         </tr>
         {%endfor%}
     </tbody>

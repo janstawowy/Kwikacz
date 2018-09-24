@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 from django.views import View
 from kwik.models import Kwik, Messages
 from kwik.forms import KwikForm, CreateUserForm, LoginForm, SendMessageForm
@@ -116,8 +117,28 @@ class MessageView(View):
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect('login')
         currentuser=User.objects.get(username=request.user)
-        messages=Messages.objects.filter(towho=currentuser.id)
-        return render(request, 'messages.html', {"messages":messages})
+        alist=Messages.objects.filter(Q(towho=currentuser)|Q(fromwho=currentuser)).distinct('towho', 'fromwho').order_by('towho', 'fromwho', "-date_sent")
+        messages=list(alist)
+        i=0
+        while i <len(messages):
+            j=1
+            while j <len(messages):
+                if messages[i].towho==messages[j].fromwho:
+                    del messages[i]
+                j+=1
+            i+=1
+
+        for a in range(len(messages) - 1, 0, -1):
+            for b in range(a):
+                if messages[b].date_sent > messages[b + 1].date_sent:
+                 temp = messages[b]
+                 messages[b] = messages[b + 1]
+                 messages[b + 1] = temp
+
+        messages.reverse()
+
+        return render(request, 'messages.html', {"messages":messages,
+                                                 "currentuser":currentuser})
 
 class SendMessageView(View):
     def get(self, request, username):
@@ -137,6 +158,20 @@ class SendMessageView(View):
             msg.fromwho=request.user
             msg.save()
             return HttpResponseRedirect("")
+
+class ConversationView(View):
+    def get(self,request,username):
+        form=SendMessageForm
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect('login')
+        recipent=User.objects.get(username=username)
+        currentuser = User.objects.get(username=request.user)
+        messages=Messages.objects.filter((Q(towho=currentuser)&Q(fromwho=recipent))|(Q(fromwho=currentuser)&Q(towho=recipent))).order_by("-date_sent")
+
+        return render(request, 'conversations.html', {"messages": messages})
+
+
+
 
 
 

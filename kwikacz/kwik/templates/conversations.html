@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<table>
+    <thead>
+    <th>Autor</th>
+    <th>Tresc</th>
+    
+    </thead>
+    <tbody>
+        {%for message in messages%}
+
+            <tr>
+                <td><a href="user/{{message.fromwho}}">{{message.fromwho}}</a></td>
+                <td>{{message.content}}</td>
+            
+            </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{%endblock%}

@@ -28,4 +28,5 @@ urlpatterns = [
     path('messages', views.MessageView.as_view()),
     path('logout', views.LogoutView.as_view()),
     re_path('sendmessage/(?P<username>[\w.@+-]+)/$', views.SendMessageView.as_view()),
+    re_path('conversation/(?P<username>[\w.@+-]+)/$', views.ConversationView.as_view()),
 ]

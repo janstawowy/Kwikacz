@@ -9,11 +9,18 @@
     </thead>
     <tbody>
         {%for message in messages%}
-        <tr>
-            <td><a href="user/{{message.fromwho}}">{{message.fromwho}}</a></td>
-            <td>{{message.content}}</td>
+            {%ifequal message.fromwho currentuser %}
+                <tr>
+                    <td><a href="conversation/{{message.towho}}">{{message.towho}}</a></td>
+                    <td>{{message.content}}</td>
+                </tr>
+            {%else%}
+                <tr>
+                    <td><a href="conversation/{{message.fromwho}}">{{message.fromwho}}</a></td>
+                    <td>{{message.content}}</td>
             
-        </tr>
+                </tr>
+            {%endifequal%}
         {%endfor%}
     </tbody>
 </table>

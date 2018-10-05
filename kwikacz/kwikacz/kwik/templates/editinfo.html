@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="wrapper">
+<h2>Twoj profil</h2>
+    <form action="" method="post" class="mainpage">
+    {% csrf_token %}
+    {{ myinfoform }}
+    <input type="submit" value="Zmien info" name="postinfoform">
+    </form>
+    <form action="" method="post" class="mainpage">
+    {% csrf_token %}
+    {{ myuicolourform }}
+    <input type="submit" value="Zmien tlo" name="postuicolourform">
+    </form>
+
+    <form action="" method="post" class="mainpage">
+    {% csrf_token %}
+    {{ passwordform }}
+    <input type="submit" value="Zmien Haslo" name="postpasswordform">
+    </form>
+
+</div>
+{% endblock %} 

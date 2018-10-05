@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="wrapper">
+    <div class="mainpage">
+<h3>Kwikacz użytkownika {{username}}</h3>
+<p><a href="/conversation/{{username}}">Kwiknij wiadomość prywatną</a></p>
+
+</div>
+    <div class="mainpage">
+        <span>O mnie</span>
+        <p>{{userinfo}}</p>
+    </div>
+
+        {%for kwik in kwiks%}
+        <div class="mainpage">
+            <span >{{kwik.user}}</span>
+            <p>{{kwik.content}}</p>
+            <span>{{kwik.create_time}}</span>
+            <span><a href="/kwik/{{kwik.id}}">Komentarze</a></span>
+        </div>
+        {%endfor%}
+
+</div>
+
+{%endblock%}

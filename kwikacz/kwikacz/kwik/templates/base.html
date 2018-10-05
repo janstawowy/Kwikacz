@@ -1,0 +1,84 @@
+<!doctype html>
+
+<html>
+    <head><meta charset="utf-8">
+        <style>
+      html,
+      body,
+      body {
+        font-family: sans-serif;
+        font-size: large;
+      }
+      .wrapper {
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba({{uicolour}}, 0.2);
+      }
+      .menu {
+        font-size:xx-large;
+        display:flex;
+        align-items:center;
+        flex-direction: column;
+        justify-content: center;
+        background-color: rgba({{uicolour}});
+        }
+      .mainpage {
+        width: 50%;
+        display:flex;
+        align-items:center;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 15px;
+        background-color: white;
+        }
+
+      .toleft {
+        width: 50%;
+        display:flex;
+        align-items:flex-start;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 15px;
+        background-color: white;
+
+        }
+
+      .myresponse {
+        width: 50%;
+        display:flex;
+        align-items:flex-end;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 15px;
+        background-color: rgba({{uicolour}}, 0.3);
+        border-radius: 25px;
+        }
+
+
+
+    </style>
+</head>
+    <body>
+
+            <div class="menu">
+                <h1>Kwikacz</h1>
+                <p><a href="/">Strona główna</a>
+                    <a href="/messages">Wiadomości({{unread}})</a>
+                    <a href="/editprofile">Edytuj Profil</a>
+                    <a href="/logout">Wyloguj</a>
+                </p>
+
+
+            </div>
+
+
+
+        {% block content %}
+        {% endblock %}
+    <footer>
+        {{request.user}}
+    </footer>
+    </body>
+</html>

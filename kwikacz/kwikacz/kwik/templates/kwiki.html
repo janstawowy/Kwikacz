@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="wrapper">
+    <div class="mainpage">
+        <h2>Kwiknij!</h2>
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Zakwicz">
+</form>
+    </div>
+    {%for kwik in kwiks%}
+        <div class="mainpage">
+            <span ><a href="user/{{kwik.user}}">{{kwik.user}}</a></span>
+            <p>{{kwik.content}}</p>
+            <span>{{kwik.create_time}}</span>
+            <span><a href="kwik/{{kwik.id}}">Komentarze</a></span>
+        </div>
+        {%endfor%}
+
+
+</div>
+
+
+
+{%endblock%}

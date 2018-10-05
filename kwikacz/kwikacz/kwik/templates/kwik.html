@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="wrapper">
+    <div class="mainpage">
+        <span><a href="user/{{kwik.user}}">{{kwik.user}}</a></span>
+        <p>{{kwik.content}}</p>
+        <span>{{kwik.create_time}}</span>
+    </div>
+    <div class="mainpage">
+        <p>Komentarze</p>
+    </div>
+    <div class="mainpage">
+        {%for comment in comments%}
+        <div style="background-color: rgba(192,192,192,0.3); border-radius: 25px; margin-bottom: 15px;">
+            <p><a href="user/{{kwik.user}}">{{comment.user}}</a>: {{comment.content}}</p>
+            <span>{{comment.create_time}}</span>
+        </div>
+        {%endfor%}
+    </div>
+    <div class="mainpage">
+        <form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+        <input type="submit" value="Zakwicz odpowiedz">
+        </form>
+
+    </div>
+</div>
+
+
+{%endblock%}

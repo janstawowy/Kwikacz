@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="wrapper" style="background-color: white;">
+    <div style="height: 20px"></div>
+    <div class="mainpage">
+         <h2>Kwiknij wiadomość prywatną</h2>
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Zakwicz">
+    </div>
+
+
+        {%for message in messages%}
+            {%ifequal message.fromwho currentuser %}
+                <div class="myresponse">
+                    <p>ja: {{message.content}} &emsp;</p>
+                </div>
+
+            {%else%}
+                <div class="toleft" style="background-color: rgba(192,192,192,0.3); border-radius: 25px;">
+                    <p>&emsp; <a href="user/{{message.fromwho}}">{{message.fromwho}}</a>:  {{message.content}}</p>
+                </div>
+
+            {%endifequal%}
+            {%endfor%}
+
+
+
+</div>
+
+
+{%endblock%}

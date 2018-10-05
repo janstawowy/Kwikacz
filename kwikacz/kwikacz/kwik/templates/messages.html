@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="wrapper">
+
+
+        {%for message in messages%}
+            {%ifequal message.fromwho currentuser %}
+
+                <div class="toleft" style="border-radius: 25px;">
+                    <p>&emsp;&emsp; <a href="conversation/{{message.towho}}">{{message.towho}}</a>: {{message.content}} </p>
+
+                </div>
+            {%else%}
+
+                <div class="toleft" style="border-radius: 25px;">
+
+                            <p>&emsp;<a href="conversation/{{message.fromwho}}">{{message.fromwho}}</a>:  {{message.content}}</p>
+
+                </div>
+            {%endifequal%}
+            {%endfor%}
+
+
+
+</div>
+
+
+{%endblock%}
